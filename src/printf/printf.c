@@ -905,7 +905,15 @@ static void print_exponential_number(output_gadget_t* output, double number, pri
     flags |= FLAGS_PRECISION;   // make sure print_broken_up_decimal respects our choice above
   }
 
+#ifdef __GNUC__
+// accounting for a static analysis bug in GCC 6.x and earlier
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#endif
   normalization.multiply = (floored_exp10 < 0 && abs_exp10_covered_by_powers_table);
+#ifdef __GNUC__
+#pragma GCC diagnostic pop
+#endif
   bool should_skip_normalization = (fall_back_to_decimal_only_mode || floored_exp10 == 0);
   struct double_components decimal_part_components =
     should_skip_normalization ?
