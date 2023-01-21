@@ -11,7 +11,7 @@
  *
  * @brief Small stand-alone implementation of the printf family of functions
  * (`(v)printf`, `(v)s(n)printf` etc., geared towards use on embedded systems with
- * a very limited resources.
+ * limited resources.
  *
  * @note the implementations are thread-safe; re-entrant; use no functions from
  * the standard library; and do not dynamically allocate any memory.
@@ -810,7 +810,7 @@ static void print_broken_up_decimal(
   out_rev_(output, buf, len, width, flags);
 }
 
-      // internal ftoa for fixed decimal floating point
+// internal ftoa for fixed decimal floating point
 static void print_decimal_number(output_gadget_t* output, floating_point_t number, printf_size_t precision, printf_size_t width, printf_flags_t flags, char* buf, printf_size_t len)
 {
   struct floating_point_components value_ = get_components(number, precision);
