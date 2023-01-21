@@ -1,6 +1,6 @@
 /**
  * @author (c) Eyal Rozenberg <eyalroz1@gmx.com>
- *             2021-2022, Haifa, Palestine/Israel
+ *             2021-2023, Haifa, Palestine/Israel
  * @author (c) Marco Paland (info@paland.com)
  *             2014-2019, PALANDesign Hannover, Germany
  *
@@ -54,7 +54,7 @@
 #include <stdbool.h>
 #endif // __cplusplus
 
-#if PRINTF_ALIAS_STANDARD_FUNCTION_NAMES
+#if PRINTF_ALIAS_STANDARD_FUNCTION_NAMES_HARD
 # define printf_    printf
 # define sprintf_   sprintf
 # define vsprintf_  vsprintf

@@ -1,6 +1,6 @@
 /**
  * @author (c) Eyal Rozenberg <eyalroz1@gmx.com>
- *             2021-2022, Haifa, Palestine/Israel
+ *             2021-2023, Haifa, Palestine/Israel
  * @author (c) Marco Paland (info@paland.com)
  *             2014-2019, PALANDesign Hannover, Germany
  *
@@ -62,8 +62,12 @@ __attribute__((format(printf, (one_based_format_index), (first_arg))))
 # define ATTR_VPRINTF(one_based_format_index)
 #endif
 
-#ifndef PRINTF_ALIAS_STANDARD_FUNCTION_NAMES
-#define PRINTF_ALIAS_STANDARD_FUNCTION_NAMES 0
+#ifndef PRINTF_ALIAS_STANDARD_FUNCTION_NAMES_SOFT
+#define PRINTF_ALIAS_STANDARD_FUNCTION_NAMES_SOFT 0
+#endif
+
+#ifndef PRINTF_ALIAS_STANDARD_FUNCTION_NAMES_HARD
+#define PRINTF_ALIAS_STANDARD_FUNCTION_NAMES_HARD 0
 #endif
 
 #if PRINTF_ALIAS_STANDARD_FUNCTION_NAMES_HARD
