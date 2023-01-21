@@ -10,14 +10,23 @@
 
 | Table of contents |
 |:------------------|
-|<sub>[Highlights, design goals and the fork](#highlights-design-goals-and-the-fork)<br>[Using the `printf` library in your project](#using-the-printf-library-in-your-project)<br>  - [CMake options and preprocessor definitions](#cmake-options-and-preprocessor-definitions)<br>[Library API](#library-api)<br>  - [Implemented functions](#implemented-functions)<br>  - [Supported Format Specifiers](#supported-format-specifiers)<br>  - [Return Value](#return-value)<br>[Contributing](#contributing)<br>[License](#license) </sub>|
-
+|<sub>[Thinking of forking this repository?](#thinking-of-forking-this-repository-read-this-first)<br>[Highlights, design goals and the mpaland->eyalroz fork](#highlights-design-goals-and-the-mpaland-eyalroz-fork)<br>[Using the `printf` library in your project](#using-the-printf-library-in-your-project)<br>  - [CMake options and preprocessor definitions](#cmake-options-and-preprocessor-definitions)<br>[Library API](#library-api)<br>  - [Implemented functions](#implemented-functions)<br>  - [Supported Format Specifiers](#supported-format-specifiers)<br>  - [Return Value](#return-value)<br>[Contributing](#contributing)<br>[License](#license) </sub>|
 
 This is a small but **fully-loaded** implementation of C's formatted printing family of functions. It was originally designed by Marco Paland, with the primary use case being in embedded systems - where these functions are unavailable, or when one needs to avoid the memory footprint of linking against a full-fledged libc. The library can be made even smaller by partially excluding some of the supported format specifiers during compilation. The library stands alone, with **No external dependencies**.
 
 It is a fork of the original [mpaland/printf](https://github.com/mpaland/printf) repository by [Marco Paland](https://github.com/mpaland), with multiple bug fixes and a few more features.
 
-## Highlights, design goals and the fork
+## Thinking of forking this repository? Read this first!
+
+If you've decided you want to work on your own version of this repository - please don't just fork it! 
+
+* If you just want a stable codebase - use one of the [versioned releases](https://github.com/eyalroz/printf/releases).
+* If you want to contribute by adding a feature or supporting a new platform - see [contributing](#contributing) below.
+* If you want to make customizations/changes which are only relevant for your own project - please **rename** your fork (e.g. `myproj-printf` or `printf-for-mypurpose`).
+
+Why? Because we already have a mess of 381 forks (!) as of January 2023. Don't make it any worse please.
+
+## Highlights, design goals and the `mpaland`->`eyalroz` fork
 
 If you use a typical libc's `sprintf()` implementation (or similar function), you are likely to pull in a *lot* of unwanted library definitions and can bloat code size - typically by as much as 20 KiB. Now, there is a boatload of so called 'tiny' `printf()`-family implementations around. So why this one? Or rather, why [mpaland/printf](https://github.com/mpaland/printf), and then why this fork? 
 
