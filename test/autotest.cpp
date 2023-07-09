@@ -286,8 +286,8 @@ static void test_i(void)
     dst = stderr;
 
   fprintf(dst, "\nfmt = \"%s\" value = %i\n", fmt_buf, value);
-  fprintf(dst, "gnu = \"%s\"\n", std_buf);
-  fprintf(dst, "mpa = \"%s\"\n", tst_buf);
+  fprintf(dst, "libc    : \"%s\"\n", std_buf);
+  fprintf(dst, "our lib:  \"%s\"\n", tst_buf);
 }
 
 static void test_x(void)
@@ -334,8 +334,8 @@ static void test_x(void)
     dst = stderr;
 
   fprintf(dst, "\nfmt = \"%s\" value = %#x\n", fmt_buf, value);
-  fprintf(dst, "gnu = \"%s\"\n", std_buf);
-  fprintf(dst, "mpa = \"%s\"\n", tst_buf);
+  fprintf(dst, "libc:     \"%s\"\n", std_buf);
+  fprintf(dst, "our lib:  \"%s\"\n", tst_buf);
 }
 
 static void test_o(void)
@@ -382,8 +382,8 @@ static void test_o(void)
     dst = stderr;
 
   fprintf(dst, "\nfmt = \"%s\" value = %o\n", fmt_buf, value);
-  fprintf(dst, "gnu = \"%s\"\n", std_buf);
-  fprintf(dst, "mpa = \"%s\"\n", tst_buf);
+  fprintf(dst, "libc:     \"%s\"\n", std_buf);
+  fprintf(dst, "our lib:  \"%s\"\n", tst_buf);
 }
 
 static void test_u(void)
@@ -428,8 +428,8 @@ static void test_u(void)
     dst = stderr;
 
   fprintf(dst, "\nfmt = \"%s\" value = %u\n", fmt_buf, value);
-  fprintf(dst, "gnu = \"%s\"\n", std_buf);
-  fprintf(dst, "mpa = \"%s\"\n", tst_buf);
+  fprintf(dst, "libc:     \"%s\"\n", std_buf);
+  fprintf(dst, "our lib:  \"%s\"\n", tst_buf);
 }
 
 static void test_f(void)
@@ -485,8 +485,8 @@ static void test_f(void)
     dst = stderr;
 
   fprintf(dst, "\nfmt = \"%s\" value = %.18f\n", fmt_buf, value);
-  fprintf(dst, "gnu = \"%s\"\n", std_buf);
-  fprintf(dst, "mpa = \"%s\"\n", tst_buf);
+  fprintf(dst, "libc:     \"%s\"\n", std_buf);
+  fprintf(dst, "our lib:  \"%s\"\n", tst_buf);
 }
 
 static void test_e(void)
@@ -542,8 +542,8 @@ static void test_e(void)
     dst = stderr;
 
   fprintf(dst, "\nfmt = \"%s\" value = %.18f\n", fmt_buf, value);
-  fprintf(dst, "gnu = \"%s\"\n", std_buf);
-  fprintf(dst, "mpa = \"%s\"\n", tst_buf);
+  fprintf(dst, "libc:     \"%s\"\n", std_buf);
+  fprintf(dst, "our lib:  \"%s\"\n", tst_buf);
 }
 
 static void test_g(void)
@@ -599,8 +599,8 @@ static void test_g(void)
     dst = stderr;
 
   fprintf(dst, "\nfmt = \"%s\" value = %.18f\n", fmt_buf, value);
-  fprintf(dst, "gnu = \"%s\"\n", std_buf);
-  fprintf(dst, "mpa = \"%s\"\n", tst_buf);
+  fprintf(dst, "libc:     \"%s\"\n", std_buf);
+  fprintf(dst, "our lib:  \"%s\"\n", tst_buf);
 }
 
 
