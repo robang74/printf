@@ -10,7 +10,8 @@
 
 | Table of contents |
 |:------------------|
-|<sub>[Thinking of forking this repository?](#thinking-of-forking-this-repository-read-this-first)<br>[Highlights, design goals and the mpaland->eyalroz fork](#highlights-design-goals-and-the-mpaland-eyalroz-fork)<br>[Using the `printf` library in your project](#using-the-printf-library-in-your-project)<br>  - [CMake options and preprocessor definitions](#cmake-options-and-preprocessor-definitions)<br>[Library API](#library-api)<br>  - [Implemented functions](#implemented-functions)<br>  - [Supported Format Specifiers](#supported-format-specifiers)<br>  - [Return Value](#return-value)<br>[Contributing](#contributing)<br>[License](#license) </sub>|
+|<sub>[Thinking of forking this repository?](#thinking-of-forking-this-repository-read-this-first)<br>[Highlights, design goals and the mpaland->eyalroz fork](#highlights-design-goals-and-the-mpaland-eyalroz-fork)<br>[Using the `printf` library in your project](#using-the-printf-library-in-your-project)<br>  - [CMake options and preprocessor definitions](#cmake-options-and-preprocessor-definitions)
+<br>  - [Reducing compiled code size](#reducing-compiled-code-size)<br>[Library API](#library-api)<br>  - [Implemented functions](#implemented-functions)<br>  - [Supported Format Specifiers](#supported-format-specifiers)<br>  - [Return Value](#return-value)<br>[Contributing](#contributing)<br>[License](#license) </sub>|
 
 This is a small but **fully-loaded** implementation of C's formatted printing family of functions. It was originally designed by Marco Paland, with the primary use case being in embedded systems - where these functions are unavailable, or when one needs to avoid the memory footprint of linking against a full-fledged libc. The library can be made even smaller by partially excluding some of the supported format specifiers during compilation. The library stands alone, with **No external dependencies**.
 
@@ -67,6 +68,7 @@ The author of this fork was one of the latercomer bug-reporters-and-PR-authors; 
    )
    FetchContent_MakeAvailable(printf_library)
    ```
+
 **Use not involving CMake:**
 
 4. Copy `printf.c` and `printf.h` into your own project, and compile the source however you see fit. Remember that the library requires compilation with the C99 language standard enabled.
@@ -80,7 +82,6 @@ Whichever way you choose to use the library:
 * **Avoid `sprintf()` in favor of `snprintf()` for safety and security** - and that goes for the standard C library `sprintf()` as well:. `sprintf()` is unaware of the amount of memory allocated for the string it writes into, and will "happily" overflow your buffer; instead of calling it, pass your buffer size to `snprintf()` - and avoid overflow.
 
 Finally, if you've started using the library in a publicly-available (FOSS or commercial) project, please consider emailing [@eyalroz](https://github.com/eyalroz), or open an [issue](https://github.com/eyalroz/printf/issues/), to announce this.
-
 
 ### CMake options and preprocessor definitions
 
@@ -115,6 +116,18 @@ Source-only options:
 | PRINTF_INCLUDE_CONFIG_H                | NO      |  Triggers inclusing by `printf.c` of a "printf_config.h" file, which in turn contains the values of all of the CMake-and-preprocessor options above. A CMake build of the library uses this mechanism to apply the user's choice of options, so it can't have the mechanism itself as an option. |
 
 Note: The preprocessor definitions are taken into account when compiling `printf.c`, _not_ when using the compiled library by including `printf.h`.
+
+
+### Reducing compiled code size
+
+The library's accompanying `CMakeLists.txt` does not set any special optimization flags. If you'd like to benefit from `libprintf` actually being small - you would need to your `CFLAGS` and `LDFLAGS` environment variables appropriately. For example, with GCC, consider:
+
+* Compiling with `-Os` to make the compiler directly optimize for size.
+* Compiling with `-ffunction-sections -fdata-sections` and linking with `-WL,--gc-sections`, so that each function and piece of data gets a distinct sections, and discarded if it isn't used.
+
+You would also be advised to turn off all CMake options for printf functionality you don't actually need (listed in the [previous subsection](#cmake-options-and-preprocessor-definitions) above); and to consider [stripping](https://unix.stackexchange.com/q/2969/34868) the resulting executable.
+
+
 
 ## Library API
 
