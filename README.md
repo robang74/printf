@@ -46,7 +46,7 @@ Marco therefore decided to write his own implementation, with the following goal
 
 Marco's repository upheld most of these goals - but did not quite make it all of the way. As of mid-2021, it still had many C-standard-non-compliance bugs; the test suite was quite lacking in coverage; some goals were simply discarded (like avoiding global/local-static constants) etc. The repository had become quite popular, but unfortunately, Marco had been otherwise preoccupied; he had not really touched the code in the two years prior; many bug reports were pending, and so were many pull requests from eary adopters who had fixed some of the bugs they had encountered.
 
-The author of this fork was one of the latercomer bug-reporters-and-PR-authors; and when noticing nothing was moving forward, decided to take up the same goals (sans the discarded ones); and integrate the existing forks and available PRs into a single "consensus fork" which would continue where Marco had left off. Along the way, numerous other issues were observed; the build system was improved; the test suite streamlined and expanded; and other contributors also lent a hand (especially [@mickjc750](https://github.com/mickjc750/)). We are now very close to fully realizing the project goals.
+The author of this fork was one of the lateromer bug-reporters-and-PR-authors; and when noticing nothing was moving forward, decided to take up the same goals (sans the discarded ones); and integrate the existing forks and available PRs into a single "consensus fork" which would continue where Marco had left off. Along the way, numerous other issues were observed; the build system was improved; the test suite streamlined and expanded; and other contributors also lent a hand (especially [@mickjc750](https://github.com/mickjc750/)). We are now very close to fully realizing the project goals.
 
 ## Using the `printf` library in your project
 
@@ -142,9 +142,9 @@ int snprintf_(char* s, size_t n, const char* format, ...);
 int vsnprintf_(char* s, size_t n, const char* format, va_list arg);
 int vprintf_(const char* format, va_list arg);
 ```
-Note that `printf()` and `vprintf()`  don't actually write anything on their own: In addition to their parameters, you must provide them with a lower-level `putchar_()` function which they can call for actual printing. This is part of this library's independence: It is isolated from dealing with console/serial output, files etc.
+Note that `printf_()` and `vprintf_()`  don't actually write anything on their own: In addition to their parameters, they will be expecting to find a lower-level `putchar_()` function which they can call for actual printing - and you must provide its implementation, for them to link with. This is part of this library's independence: It is isolated from dealing with console/serial output, files etc.
 
-Two additional functions are provided beyond those available in the standard library:
+Two additional functions are provided by the library beyond those available in the standard library:
 ```
 int fctprintf(void (*out)(char c, void* extra_arg), void* extra_arg, const char* format, ...);
 int vfctprintf(void (*out)(char c, void* extra_arg), void* extra_arg, const char* format, va_list arg);
